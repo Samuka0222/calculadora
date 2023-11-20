@@ -17,9 +17,14 @@ const StyledDigit = styled.button`
     transition: ease-in-out .35s;
 
     &:hover {
-        /* background-color: ${theme.colors.bg}; */
         opacity: 0.5;
         color: ${theme.colors.alternative}
+    }
+
+    @media (max-width: 390px) {
+        height: 95px;
+        border-radius: 0;
+        border: 1px solid ${theme.colors.alternative}
     }
 `
 

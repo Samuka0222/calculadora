@@ -13,13 +13,17 @@ const NumpadSection = styled.section`
     justify-items: center;
     align-self: center;
     margin-top: 30px;
+
+    @media (max-width: 390px) {
+        gap: 0;
+    }
 `
 
-const Numpad = ({ addDigit, calculate, clearExpression, deleteDigit }) => {
+const Numpad = ({ addDigit, calculate, deleteDigit, clearExpression }) => {
     return (
         <NumpadSection>
             <NumpadButton
-                action={() => clearExpression()}
+                action={(e) => clearExpression()}
             >
                 C
             </NumpadButton>
@@ -44,18 +48,21 @@ const Numpad = ({ addDigit, calculate, clearExpression, deleteDigit }) => {
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 7
             </NumpadButton>
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 8
             </NumpadButton>
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 9
             </NumpadButton>
@@ -68,18 +75,21 @@ const Numpad = ({ addDigit, calculate, clearExpression, deleteDigit }) => {
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 4
             </NumpadButton>
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 5
             </NumpadButton>
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 6
             </NumpadButton>
@@ -92,18 +102,21 @@ const Numpad = ({ addDigit, calculate, clearExpression, deleteDigit }) => {
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 1
             </NumpadButton>
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 2
             </NumpadButton>
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 3
             </NumpadButton>
@@ -122,6 +135,7 @@ const Numpad = ({ addDigit, calculate, clearExpression, deleteDigit }) => {
 
             <NumpadButton
                 action={(e) => addDigit(e.target.innerText)}
+                $type={"number"}
             >
                 0
             </NumpadButton>

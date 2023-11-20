@@ -9,35 +9,28 @@ const DisplayContainer = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: end;
-    align-items: end;
-`
+    align-items: center;
 
-const DisplayRealTimeResult = styled.p`
-    color: ${theme.colors.white};
-    margin: 20px 5px;
-    font-size: 1.7em;
-    font-weight: bold;
+    @media (max-width: 390px) {
+        height: 30%;
+        align-items: end;
+    }
 `
 
 const DisplayExpression = styled.p`
     color: ${theme.colors.white};
-    margin: 0 20px 10px 0;
-    font-size: 3em;
+    margin-right: 10px;
+    font-size: 4rem;
     font-weight: bold;
 `
 
-const Display = ({displayResult, displayRealtimeResult}) => {
+const Display = ({ displayResult }) => {
     return (
         <DisplayContainer>
-            {
-              displayRealtimeResult !== '' 
-              ? <DisplayRealTimeResult>({displayRealtimeResult})</DisplayRealTimeResult>
-              : ''
-            }
             <DisplayExpression>
-                {displayResult === '' ? "0" : displayResult}
+                {displayResult.length < 1 ? "0" : displayResult}
             </DisplayExpression>
-            
+
         </DisplayContainer>
     )
 }

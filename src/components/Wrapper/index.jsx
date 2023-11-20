@@ -9,10 +9,22 @@ const WrapperMain = styled.main`
     flex-direction: column;
     align-items: center;
     height: 70%;
-    min-width: 60%;
+    width: 60%;
+    max-width: 580px;
     background-color: ${theme.colors.alternative};
     border-radius: 20px;
     padding-bottom: 1.4rem;
+
+    @media (max-width: 767px) {
+        width: 80%;
+    }
+
+    @media (max-width: 390px) {
+        width: 100vw;
+        height: 100vh;
+        border-radius: none;
+    }
+
 `
 
 const StyledTitle = styled.h1`
@@ -21,52 +33,95 @@ const StyledTitle = styled.h1`
     text-align: center;
     margin: 1rem 0;
     font-size: 1.2rem;
+
+    @media (max-width: 390px) {
+        margin-top: 30px;
+    }
 `
 
 
 const Wrapper = () => {
-    const [calc, setCalc] = useState("")
-    const [result, setResult] = useState("")
-
-    const ops = ['/', '*', '+', '-', '.', '%']
+    const [input, setInput] = useState([])
+    let ops = ['+', '-', '*', '/']
+    let operator = ''
 
     const updateCalc = value => {
-        if (ops.includes(value) && calc === '' || ops.includes(value) && ops.includes(calc.slice(-1))) {
-            return
+        if (value === '( )') {
+            if (input.includes('(')) {
+                operator = ')'
+                setInput([...input, operator])
+            } else {
+                operator = '('
+                setInput([...input, operator])
+            }
+        } 
+        
+        else if (value === ".") {
+            if (input.length < 1) {
+                setInput(["0."])
+            } else {
+                if (input.includes('.') && includesOps != true) {
+                    return
+                } else {
+                    setInput([...input, value])
+                }
+            }
+        } 
+        
+        else if (value === "%") {
+            const lastElement = input.pop()
+            if (!ops.includes(lastElement)) {
+                const percentage = lastElement / 100
+                setInput([...input, percentage])
+            } else {
+                return
+            }
+        } 
+        
+        else if (ops.includes(value)) {
+            if (includesOps && !input.includes('(') ) {
+                setInput([eval(input.join('')), value])
+            } else {
+                setInput([...input, value])
+            }
         }
-        setCalc(calc + value)
+        
+        else {
+            setInput([...input, value])
+        }
+    }
 
-        if (!ops.includes(value)) {
-            setResult(eval(calc + value).toString())
-        }
+    const includesOps = () => {
+        return ops.some(operator => input.includes(operator))
     }
 
     const clearExpression = () => {
-        setCalc('')
-        setResult('')
-    }
-
-    const deleteDigit = () => {
-        setCalc(calc.split('').slice(0, -1).join(''))
-        setResult(eval(calc + value).toString())
+        setInput([])
     }
 
     const calculate = () => {
-        setCalc(eval(calc).toString())
+        setInput([eval(input.join(''))])
     }
+
+    const deleteDigit = () => {
+        setInput(input.slice(0, -1))
+    }
+
+    useEffect(() => {
+        console.log(input)
+    }, useEffect[input])
 
     return (
         <WrapperMain>
-            <StyledTitle>Calculator 3000</StyledTitle>
-            <Display 
-            displayResult={calc}
-            displayRealtimeResult={result}
+            <StyledTitle>Simple Calculator</StyledTitle>
+            <Display
+                displayResult={input}
             />
-            <Numpad 
-            addDigit={updateCalc}
-            calculate={calculate}
-            clearExpression={clearExpression}
-            deleteDigit={deleteDigit}
+            <Numpad
+                addDigit={updateCalc}
+                calculate={calculate}
+                deleteDigit={deleteDigit}
+                clearExpression={clearExpression}
             />
         </WrapperMain>
     )

@@ -11,16 +11,20 @@ const DisplayContainer = styled.div`
     justify-content: end;
     align-items: center;
 
-    @media (max-width: 390px) {
+    @media (max-width: 414px) {
         height: 30%;
         align-items: end;
+    }
+
+    @media screen and (max-width: 390px) {
+        height: 25%;
     }
 `
 
 const DisplayExpression = styled.p`
     color: ${theme.colors.white};
     margin-right: 10px;
-    font-size: 4rem;
+    font-size: 4.5rem;
     font-weight: bold;
 `
 

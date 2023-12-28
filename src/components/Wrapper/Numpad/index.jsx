@@ -14,7 +14,7 @@ const NumpadSection = styled.section`
     align-self: center;
     margin-top: 30px;
 
-    @media (max-width: 390px) {
+    @media (max-width: 414px) {
         gap: 0;
     }
 `

@@ -1,7 +1,11 @@
 import { createGlobalStyle } from "styled-components";
-import GameOver from "./fonts/game_over.ttf"
+import Digital7 from "./fonts/digital-7.ttf";
 
 const GlobalStyles = createGlobalStyle`
+@font-face {
+  font-family: 'Digital7';
+  src: local('Digital-7'), local('Digital7'), url(${Digital7});
+}
 
 html {
   line-height: 1.15; /* 1 */
@@ -12,6 +16,7 @@ html {
 
 body {
   margin: 0;
+  font-family: 'Digital7', sans-serif;
 }
 
 main {
